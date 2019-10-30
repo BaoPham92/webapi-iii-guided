@@ -14,6 +14,12 @@ function logMeth(req, res, next) {
   next();
 }
 
+function doubler(req, res, next) {
+  const number = Number(req.query.number || 0)
+  req.doubled = number*2;
+  next();
+}
+
 function gateKeeper(req, res, next) {
     const password = req.headers.password || '';
 
