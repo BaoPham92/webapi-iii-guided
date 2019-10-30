@@ -1,9 +1,19 @@
 const express = require('express'); // importing a CommonJS module
+const helmet = require('helmet');
 
 const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
+function logMeth(req, res, next) {
+  console.log(`
+    ${req.method} has been made.
+  `)
+
+  next();
+}
+
+server.use(helmet());
 server.use(express.json());
 
 server.use('/api/hubs', hubsRouter);
